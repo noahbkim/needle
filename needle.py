@@ -23,13 +23,13 @@ class Bot(disnake.Client):
             await thread.fetch_members()
 
             message_content = None
-            async for message in thread.history(limit=2):
+            async for message in thread.history(limit=1):
                 message_content = message.content
                 break
 
             embed = disnake.Embed(
                 title=thread.name,
-                description=f"> {message_content}" or f"{thread.owner.display_name} created a new thread.",
+                description=message_content or f"{thread.owner.display_name} created a new thread.",
                 timestamp=thread.create_timestamp,
                 url=thread.jump_url,
             )
